@@ -1,0 +1,4 @@
+llama-index==0.14.7
+llama-index-vector-stores-milvus==0.9.4
+pymilvus==2.6.3
+pylint==4.0.3
