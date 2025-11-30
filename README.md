@@ -31,7 +31,7 @@ source env/bin/activate
 pip install -r requirements.txt
 
 # Create .env file with your OpenAI API key
-OPENAI_API_KEY = <>
+OPENAI_API_KEY = "<key>"
 ```
 
 ### Dependencies
@@ -60,7 +60,7 @@ J-Assignment-AI/
 │   ├── test_agent.py
 ├── requirements.txt       # Python dependencies
 ├── .env                   # Environment variables (not committed)
-└── README.md              # This file
+└── README.md              
 ```
 
 ---
@@ -84,14 +84,14 @@ J-Assignment-AI/
 
 ### Run All Tests
 
-To execute the automated test suite:
+To execute the test suite:
 
 ```bash
 cd J-Assignment-AI
 python -m test.test_agent
 ```
 
-This runs all tests to verify that the pipeline (Router → Classifier → Extractor → Auditor) works correctly.
+This runs all tests to verify that the pipeline (Router → Classifier → Extractor → Auditor).
 
 ---
 
@@ -115,7 +115,20 @@ resume_result = asyncio.run(process_resume(resume_text=resume_text))
 print(resume_result)
 ```
 
-* Returns structured `ResumeSchema` JSON with role type, confidence score, contact info, and profile (for TECH roles).
+**Expected Extraction:**
+
+```
+### Summary of Findings:
+- **Classification**: The resume belongs to a **Technical Role** with a confidence score of 1.0.
+- **Contact Information**: Email: hello@example.com
+- **Technical Skills**: Python, LlamaIndex, RAG agents, DeepEval, AWS EC2
+- **Summary**: The individual is an experienced full-stack developer specialized in Python, LlamaIndex, and building RAG agents. They have implemented DeepEval for hallucination tracking and deployed systems on AWS EC2.
+
+### Detailed Evaluation:
+- **Faithfulness**: The resume is faithful with a score of 1.0.
+
+The resume has been analyzed successfully. If you have any specific questions or need further details, feel free to ask!
+```
 
 ---
 
@@ -145,50 +158,6 @@ print(query_result)
 
 ---
 
-## Example Input & Expected Output for Process only Resume
-
-**Resume Text:**
-
-```text
-[Name] | [Recent Position]. 4+ years of experience in full-stack dev.
-Specialized in Python, LlamaIndex, and building RAG agents.
-Implemented DeepEval for hallucination tracking.
-Deployed systems on AWS EC2.
-Contact: hello@example.com
-```
-
-**Expected Extraction:**
-
-```
-### Summary of Findings:
-- **Classification**: The resume belongs to a **Technical Role** with a confidence score of 1.0.
-- **Contact Information**: Email: hello@example.com
-- **Technical Skills**: Python, LlamaIndex, RAG agents, DeepEval, AWS EC2
-- **Summary**: The individual is an experienced full-stack developer specialized in Python, LlamaIndex, and building RAG agents. They have implemented DeepEval for hallucination tracking and deployed systems on AWS EC2.
-
-### Detailed Evaluation:
-- **Faithfulness**: The resume is faithful with a score of 1.0.
-
-The resume has been analyzed successfully. If you have any specific questions or need further details, feel free to ask!
-```
-
----
-
-## Example Input & Expected Output for Process Resume with a Query
-
-**Resume Text:**
-
-```text
-[Name] | [Recent Position]. 4+ years of experience in full-stack dev.
-Specialized in Python, LlamaIndex, and building RAG agents.
-Implemented DeepEval for hallucination tracking.
-Deployed systems on AWS EC2.
-Contact: hello@example.com
-```
-```
-query = "Show me Python developers with experience in RAG systems."
-```
-
 **Expected Extraction:**
 
 ```
@@ -208,4 +177,3 @@ query = "Show me Python developers with experience in RAG systems."
 
 The candidate in the resume has the required experience in Python and RAG systems as per the query.
 ```
----
